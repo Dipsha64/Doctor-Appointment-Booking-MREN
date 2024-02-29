@@ -1,0 +1,30 @@
+header {
+    position: fixed;
+    width: 50vw;
+    background: linear-gradient(135deg,);
+}
+header .container {
+    display: flex;
+    height: 5rem;
+    width: 90rem;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 -35rem 0 12rem;
+    background-color : var(--blue);
+}
+header .container img{
+   height: 5rem;
+}
+.container ul {
+    display: flex;
+    gap: 2rem;
+    text-decoration: none;
+    list-style-type: none;
+}
+.container ul li {
+    font-size: 1rem;
+    font-weight: 600;
+}
+.container ul li a{
+    text-decoration: none;
+}

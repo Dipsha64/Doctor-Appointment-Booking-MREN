@@ -4,8 +4,11 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    text-decoration: none;
+
 }
 
-body{
-    font-family: "Manrope",sans-serif;
+:root {
+    --blue: #1e90ff;
+    --white: #ffffff;
 }
