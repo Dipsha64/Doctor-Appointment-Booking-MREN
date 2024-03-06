@@ -8,7 +8,7 @@
 }
 .hero_section {
     /* margin: 5rem; */
-    background: linear-gradient(135deg,var(--primary-color),var(--primary-color-variant));
+    background: linear-gradient(87deg,var(--primary-color),var(--primary-color-variant));
     color: var(--white-color);
 }
 .hero-container h1 {
@@ -130,4 +130,31 @@
     margin-top: 3rem;
     padding: 0.75rem 2rem;
     background-color: #f72585;
+}
+.doctors-section{
+    background: white;
+    color: var(--black-color);
+    height: 55rem;
+    padding: 5rem 14rem;
+    text-align: center;
+}
+.doctors-section .doctor-details{
+    display: grid;
+    grid-template-columns: repeat(3, 2fr);
+    margin: 5rem 9rem 2rem 9rem;
+    /* margin-top: 5rem; */
+}
+.doctors-section .doctor-details img  {
+    height: 18rem;
+    padding: 0 5rem 0 0;
+}
+.doctors-section article h4{
+    text-align: center;
+    font-size: 1.4rem;
+    font-weight: 500;
+    line-height: 2;
+}
+.doctors-section h2{
+    font-weight: 600;
+    font-size: 2.5rem;
 }

@@ -6,6 +6,7 @@ import service1 from "../assets/images/service1.png";
 import service2 from "../assets/images/service2.png";
 import service3 from "../assets/images/service3.png";
 import ServicesList from "../components/Services/ServicesList";
+import Footer from "../components/Footer/Footer";
 
 function Home() {
     return ( 
@@ -77,6 +78,27 @@ function Home() {
             </div>
             <div className="servicesList">
                 <ServicesList/>
+            </div>
+            <div className="doctors-section">
+                <h2>Our Great Doctors</h2>
+                <p>World-class care for everyone. Our health system offers unmatched, expert health care.</p>
+                <div className="doctor-details">
+                    <article>
+                        <img src={docImage1} alt="docImage1"/>
+                        <h4>Dr. Alfaz Ahmed</h4>
+                    </article>
+                    <article>
+                        <img src={docImage2} alt="docImage2"/>
+                        <h4>Dr. Alfaz Ahmed</h4>
+                    </article>
+                    <article>
+                        <img src={docImage3} alt="docImage3"/>
+                        <h4>Dr. Alfaz Ahmed</h4>
+                    </article>
+                </div>
+            </div>
+            <div>
+                <Footer/>
             </div>
         </div>
         </>

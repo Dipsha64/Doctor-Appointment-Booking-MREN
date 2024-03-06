@@ -1,5 +1,5 @@
 import Header from "../components/Header/Header";
-import Footer from "../components/Footer/Footer";
+// import Footer from "../components/Footer/Footer";
 import Router from "../components/routes/Router";
 import "../layout/Layout.css";
 
@@ -10,7 +10,7 @@ function Layout() {
         <main>
             <Router/>
         </main>
-        <Footer/>
+        {/* <Footer/> */}
         </>
     );
 }

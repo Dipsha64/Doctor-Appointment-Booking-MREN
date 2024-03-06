@@ -1,0 +1,19 @@
+.container-footer{
+    margin: 3rem 14rem 0 14rem;
+    display: flex;
+}
+.container-footer .logo-section img{
+    height: 5rem;
+}
+.logo-section .social-links {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1rem;
+    margin: 2rem 0;
+}
+.social-links a{
+    border: solid;
+    padding: 0.5em;
+    border-radius: 20rem;
+}
