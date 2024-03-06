@@ -1,0 +1,133 @@
+.container {
+    display: grid;
+    grid-template-columns: 35% 65%;
+    width: 80%;
+    margin: 12%;
+    gap: 8rem;
+
+}
+.hero_section {
+    /* margin: 5rem; */
+    background: linear-gradient(135deg,var(--primary-color),var(--primary-color-variant));
+    color: var(--white-color);
+}
+.hero-container h1 {
+    font-size: 3.3rem;
+    line-height: 1.2;
+}
+.hero-container p{
+    margin: 1.5rem 0 2rem;
+    font-size: 1.1rem;
+}
+.hero-container .button-section {
+    display: inline-block;
+    border-radius: 4.4rem;
+    width: fit-content;
+    font-size: 1.3rem;
+    /* font-weight: 600; */
+    padding: 0.75rem 2rem;
+    background-color: #f72585;
+}
+.container .hero-images {
+    display: flex;
+    /* gap: 2rem; */
+}
+.hero-images .left-image-section {
+    height: 30rem;
+}
+.hero-images .left-image-section img{
+    height: 28rem;
+    border-radius: 1rem;
+}
+.hero-images .right-image-section img{
+    height: 18rem;
+    border-radius: 1rem;
+    margin: 1.5rem;
+}
+.other-information {
+    display: flex;
+    margin-top: 2rem;
+    align-items: center;
+    gap: 1.5rem;
+}
+.other-information h3 {
+    font-size: 2rem;
+    font-weight: 400;
+    text-align: center;
+}
+.other-information p {
+    font-size: 0.8rem;
+}
+.services {
+    background : white;
+    /* background: rgba(235, 249, 252, 1); */
+    color: var(--black-color);
+    height: 75rem;
+}
+.services h2{
+    text-align: center;
+    font-size: 2.5rem;
+    line-height: 1.2;
+    padding: 5rem 0 1rem 0;
+}
+.services p {
+    text-align: center;
+    font-size: 1rem;
+    line-height: 1.2;
+    /* margin-top: 5rem; */
+}
+.services .services-section{
+    display: grid;
+    grid-template-columns: repeat(3, 2fr);
+    margin: 0 9rem 2rem 9rem;
+}
+.services-section article {
+    margin: 5rem
+}
+.services-section article img {
+    height: 18rem;
+}
+.services-section article h4 {
+    text-align: center;
+    font-size: 1.4rem;
+    font-weight: 500;
+    line-height: 2;
+}
+.aboutSection{
+    display: grid;
+    grid-template-columns: repeat(2, 2fr);
+    margin: 0 14rem;
+}
+.aboutSection .about-image {
+    display: flex;
+    justify-content: center;
+}
+.aboutSection .about-image img {
+    height: 25rem;
+}
+.aboutSection .about-detail {
+    text-align: center;
+    padding-top: 3rem;
+}
+.aboutSection .about-detail h3{
+    font-size: 2.5rem;
+    font-weight: 500;
+    line-height: 2;
+}
+.aboutSection .about-detail p{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    font-size: 1rem;
+    word-spacing: 3px;
+}
+.about-detail .button-section {
+    display: inline-block;
+    border-radius: 4.4rem;
+    width: fit-content;
+    font-size: 1.3rem;
+    color: var(--white-color);
+    margin-top: 3rem;
+    padding: 0.75rem 2rem;
+    background-color: #f72585;
+}

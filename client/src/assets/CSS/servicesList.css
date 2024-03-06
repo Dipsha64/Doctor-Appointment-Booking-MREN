@@ -1,0 +1,19 @@
+.services-list-section{
+    text-align: center;
+    margin-top: 5rem;
+}
+.services-list-section h2{
+    font-size: 2.5rem;
+    font-weight: 600;
+}
+.services-list-section h2{
+    font-size: 2.5rem;
+}
+.list-wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+.list-wrapper article {
+    
+}
