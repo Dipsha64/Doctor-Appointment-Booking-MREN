@@ -1,0 +1,51 @@
+.continer {
+    margin-top: 10rem;
+    text-align: center;
+}
+.continer h2{
+    font-size: 2.5rem;
+    line-height: 1.2;
+    font-weight: 500;
+}
+.continer .search-field {
+    /* border: 1px solid; */
+    width: 30rem;
+    height: 2.8rem;
+    border-radius: 0.5rem;
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background: #6db0cb6e;
+    color: black;
+    outline: none;
+}
+.continer .search-field::placeholder {
+    color: rgb(27, 27, 27);
+}
+.doctor-wrapper article img{
+    height: 20rem;
+}
+.doctor-wrapper{
+    display: grid;
+    grid-template-columns: repeat(4, 2fr);
+    margin: 5rem 10rem 10rem 12rem;
+    row-gap: 4rem;
+    column-gap: 2rem;
+}
+.doctor-wrapper .doctor-info{
+    display: inline-block;
+    vertical-align: middle;
+    border-radius: 0.8rem;
+    border: 2px solid #93d3ed;
+    padding: 1.5rem;
+    width: 20rem;
+}
+.doctor-wrapper .doctor-info h4{
+    font-size: 1.5rem;
+    margin-top: 1rem;
+    font-weight: 500;
+}
+.doctor-wrapper .doctor-info .moreInfo{
+    display: inline-block;
+    height: 4rem;
+    margin-top: 1.5rem;
+}

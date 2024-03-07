@@ -6,7 +6,7 @@ import service1 from "../assets/images/service1.png";
 import service2 from "../assets/images/service2.png";
 import service3 from "../assets/images/service3.png";
 import ServicesList from "../components/Services/ServicesList";
-import Footer from "../components/Footer/Footer";
+// import Footer from "../components/Footer/Footer";
 
 function Home() {
     return ( 
@@ -97,9 +97,9 @@ function Home() {
                     </article>
                 </div>
             </div>
-            <div>
+            {/* <div>
                 <Footer/>
-            </div>
+            </div> */}
         </div>
         </>
     );

@@ -134,7 +134,8 @@
 .doctors-section{
     background: white;
     color: var(--black-color);
-    height: 55rem;
+    /* height: 55rem; */
+    height: 43rem;
     padding: 5rem 14rem;
     text-align: center;
 }
@@ -146,7 +147,7 @@
 }
 .doctors-section .doctor-details img  {
     height: 18rem;
-    padding: 0 5rem 0 0;
+    padding: 0 1rem 0 5rem;
 }
 .doctors-section article h4{
     text-align: center;
