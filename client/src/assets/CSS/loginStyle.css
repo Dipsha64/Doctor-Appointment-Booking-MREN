@@ -1,0 +1,49 @@
+.login-container{
+    margin-top: 15rem;
+    display: grid;
+    place-items: center;
+}
+.login-container .login-section {
+    width: 30rem;
+    margin-bottom: 7rem;
+    height: 25rem;
+    padding: 2rem;
+    box-shadow: rgb(153 147 147 / 35%) 0px 5px 15px;
+}
+.login-container .login-section h2{
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: 500;
+    line-height: 1.2;
+}
+.login-container .login-section h2 span{
+    color: #5777d7;
+}
+.login-section form{
+    display: grid;
+    place-items: center;
+}
+.form-field input{
+    border-bottom: 1.5px solid #100f0f8f;
+    padding-top: 2rem;
+    width: 25rem;
+    outline: none;
+    padding-bottom: 0.8rem;
+}
+.button-section button {
+    border-radius: 3rem;
+    border: 1px solid #5777d7;
+    margin-top: 3rem;
+    background: #5777d7;
+    color: white;
+    width: 10rem;
+    padding: 0.75rem 2rem;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+.another-view {
+    padding-top: 1.5rem;
+}
+.add-links{
+    color: #5777d7;
+}

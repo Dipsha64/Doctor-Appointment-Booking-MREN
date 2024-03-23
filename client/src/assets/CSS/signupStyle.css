@@ -1,0 +1,27 @@
+.signup-wrapper {
+    margin: 9rem;
+}
+.signup-container {
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+.left-section {
+    padding: 5rem;
+}
+.right-section {
+    padding-top: 9rem;
+}
+.drop-down-field{   
+    padding-top: 2rem;
+    display: flex;
+    column-gap: 5rem; 
+}
+.left-dropdown select, .right-dropdown select{
+    outline: none;
+}
+.left-dropdown label, .right-dropdown label{
+    font-weight: 600;
+}
+.profile-section{
+    padding-top: 2rem;
+}
