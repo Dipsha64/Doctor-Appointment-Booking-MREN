@@ -18,9 +18,21 @@ const getSingleDoctor = async (req,res) =>{
 
 const getAllDoctor = async (req,res) => {
     try{
-        const getData = await doctorModel.find({}).select("-password");
-        if(getData){
-            res.json({message : "Doctor is found",status : true,data : getData});
+        const query = req.query;
+        let fetchData = null;
+        if(query){
+            fetchData = await doctorModel.find({isApproved : "approved",
+            $or:[
+                {name : {$regex : query, $options : "i"}},
+                {specialization : {$regex: query, $options : "i"}}
+            ]
+            }).select("-password");
+        }
+        else{
+            fetchData = await doctorModel.find({isApproved : "approved"}).select("-password");
+        }
+        if(fetchData){
+            res.json({message : "Doctor is found",status : true,data : fetchData});
         }
         else{
             res.json({message : "Doctor not found", status : false});
