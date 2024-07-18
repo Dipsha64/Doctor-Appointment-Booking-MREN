@@ -9,7 +9,9 @@ const generateToken = (obj) =>{
 
 const register = async (req,res) =>{
     try{
+        console.log("ROLEEEE" , req.body.role);
         const {name, email, password, role, gender, photo } = req.body;
+        console.log("REQQQQ", req.body);
         // let userExist = null;
         let isPatient = null;
         let isDoctor = null;

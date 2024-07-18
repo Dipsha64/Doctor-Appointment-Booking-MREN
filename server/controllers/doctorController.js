@@ -2,7 +2,9 @@ const doctorModel = require("../model/DoctorSchema");
 
 const getSingleDoctor = async (req,res) =>{
     try{
-        const doctorData = await doctorModel.find({}).select("-password");
+        const docId = req.params.id;
+        console.log("docId.." ,docId);
+        const doctorData = await doctorModel.findById(docId).populate("reviews").select("-password");
         if(doctorData){
             res.json({message:"Doctor is found",status : true,data : doctorData});
         }
@@ -20,7 +22,7 @@ const getAllDoctor = async (req,res) => {
     try{
         const query = req.query;
         let fetchData = null;
-        if(query){
+        if(Object.keys(query).length > 0){
             fetchData = await doctorModel.find({isApproved : "approved",
             $or:[
                 {name : {$regex : query, $options : "i"}},
@@ -29,7 +31,7 @@ const getAllDoctor = async (req,res) => {
             }).select("-password");
         }
         else{
-            fetchData = await doctorModel.find({isApproved : "approved"}).select("-password");
+            fetchData = await doctorModel.find({isApproved : "pending"}).select("-password");
         }
         if(fetchData){
             res.json({message : "Doctor is found",status : true,data : fetchData});
