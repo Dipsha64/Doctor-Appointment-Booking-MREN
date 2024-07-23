@@ -34,7 +34,7 @@
     border-radius: 3rem;
     border: 1px solid #5777d7;
     margin-top: 3rem;
-    background: #5777d7;
+    background: hwb(225 34% 16%);
     color: white;
     width: 10rem;
     padding: 0.75rem 2rem;

@@ -9,7 +9,6 @@ const generateToken = (obj) =>{
 
 const register = async (req,res) =>{
     try{
-        console.log("ROLEEEE" , req.body.role);
         const {name, email, password, role, gender, photo } = req.body;
         console.log("REQQQQ", req.body);
         // let userExist = null;
@@ -29,7 +28,7 @@ const register = async (req,res) =>{
                 const newUser = await userModel.create({
                     name, email, password : hashpassword, role, gender, photo  
                 })
-                if(newUser){
+                if(Object.keys(newUser).length > 0){
                     res.json({message : "User Registerd successfully",status : true,data : newUser});
                 }
                 else {
