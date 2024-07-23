@@ -1,9 +1,9 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../../assets/images/logo.png";
-import profile_pic from "../../assets/images/profile_pic.png";
-// import "../Header/HeaderStyle.css";
-import { useEffect, useRef, useState} from "react";
+import { useState} from "react";
 import { FaUser } from "react-icons/fa6";
+import { useDispatch } from "react-redux";
+import { signOutAsync } from "../../features/auth/authSlice";
 
 function Header() {
     const [showMenu, setShowMenu ] = useState(false);
@@ -25,11 +25,15 @@ function Header() {
             display : "Contact"
         }
     ];
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
     const handleMenu = () =>{
         setShowMenu(preve => !preve);
     }
-    const headerRef = useRef(null);
-    const menuRref = useRef(null);
+    const handleLogout = () => {
+        dispatch(signOutAsync());
+        navigate("/login")
+    }
 
     // const handleStickyheader = () =>{
     //     window.addEventListener("scroll",()=>{
@@ -64,20 +68,20 @@ function Header() {
                         </div>
                     </div>
                     <div className="flex justify-center items-center">
-                        {/* <div className="text-slate-900">
+                        <div className="text-slate-900">
                             <div className="text-2xl border-2 border-solid border-slate-600 p-1 cursor-pointer rounded-full cursor-pointer" onClick={handleMenu}>
                                 <FaUser />
                             </div>
                             { showMenu && 
                                 <div className="absolute bg-white py-3 px-2 shadow drop-shadow-md flex flex-col text-base font-normal leading-6">
                                     <Link to={"/setting"}><span className="whitespace-nowrap cursor-pointer">Setting</span></Link>
-                                    <span className="whitespace-nowrap cursor-pointer">Logout</span>
+                                    <span className="whitespace-nowrap cursor-pointer" onClick={handleLogout}>Logout</span>
                                 </div>
                             }
-                        </div> */}
-                        <div className="text-slate-900">
-                            <button className="border-1 border-solid rounded-lg bg-pink-600 text-white w-fit py-3 px-8 text-base font-semibold">Login</button>
                         </div>
+                        {/* <div className="text-slate-900">
+                            <button className="border-1 border-solid rounded-lg bg-pink-600 text-white w-fit py-3 px-8 text-base font-semibold">Login</button>
+                        </div> */}
                     </div>
                 </div>
             </div>

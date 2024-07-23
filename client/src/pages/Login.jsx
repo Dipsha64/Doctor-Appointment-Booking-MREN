@@ -4,20 +4,26 @@ import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-// import { useDispatch } from "react-redux";
-// import { loginAsyncSlice } from "../features/auth/authSlice";
+import { useDispatch } from "react-redux";
+import { loginAsyncSlice } from "../features/auth/authSlice";
 
 function Login() {
     const { register, handleSubmit, formState: { errors } } = useForm();
     console.log("ERR",errors);
-    // const navigate = useNavigate();
-    // const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const handleLogin = (data) => {
-        console.log("data..." ,data);
-        // dispatch(loginAsyncSlice(data)).then((res)=>{
-        //     console.log("RESSSSSSSS LOGIN",res);
-        // })
+        dispatch(loginAsyncSlice(data)).then((res)=>{
+            console.log("RESSSSSSSS LOGIN",res);
+            if(res.payload && res.payload.status === true){
+                toast(res.payload.message,toastOption);
+                navigate("/");
+            }
+            else{
+                toast(res.payload.message,toastOption);
+            }
+        })
     }
     const toastOption = {
         position : "top-right",
@@ -26,7 +32,6 @@ function Login() {
         theme : "dark",
         draggable : true
     }
-
     return ( 
         <>
         <section className="signup-wrapper">

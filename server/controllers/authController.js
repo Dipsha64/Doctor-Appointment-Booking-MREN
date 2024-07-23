@@ -67,18 +67,17 @@ const login = async (req,res) =>{
         }
 
         if(!userData){
-            res.json({message : "User does not exist"});
+            res.json({message : "User does not exist. Please create a user."});
         }
         else{
             bcrypt.compare(req.body.password,userData.password,(err, data)=>{
                 if(data){
-                    let obj = {"id": userData._id , "name" : userData.name , "email" : userData.email}
+                    let obj = {"id": userData._id , "name" : userData.name , "email" : userData.email, "photo" : userData.photo}
                     let token = generateToken(obj);
                     res.json({message : "login successfully",status : true , data : obj,token:token});
-                    
                 }
                 else {
-                    res.json({message : "Incorrect email & password, Please try it again",status : false});
+                    res.json({message : "Incorrect email & password, Please try it again.",status : false});
                 }
             })
         }

@@ -2,7 +2,10 @@
     display: grid;
     grid-template-columns: 35% 65%;
     width: 80%;
-    margin: 12%;
+    margin-left: 12%;
+    margin-right: 12%;
+    padding-top : 4%;
+    padding-bottom: 4%;
     gap: 8rem;
 
 }
@@ -96,7 +99,7 @@
 .aboutSection{
     display: grid;
     grid-template-columns: repeat(2, 2fr);
-    margin: 0 14rem;
+    margin: -6rem 5rem;
 }
 .aboutSection .about-image {
     display: flex;
@@ -107,7 +110,7 @@
 }
 .aboutSection .about-detail {
     text-align: center;
-    padding-top: 3rem;
+    padding: 2rem;
 }
 .aboutSection .about-detail h3{
     font-size: 2.5rem;
@@ -142,7 +145,7 @@
 .doctors-section .doctor-details{
     display: grid;
     grid-template-columns: repeat(3, 2fr);
-    margin: 5rem 9rem 2rem 9rem;
+    padding: 5rem 0rem 2rem 0rem;
     /* margin-top: 5rem; */
 }
 .doctors-section .doctor-details img  {
