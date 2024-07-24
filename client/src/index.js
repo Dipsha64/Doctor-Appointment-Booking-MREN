@@ -14,17 +14,21 @@ import Services from './pages/Services';
 import Doctors from './pages/Doctors/Doctors';
 import DoctorDetails from './pages/Doctors/DoctorDetails';
 import Contact from './pages/Contact';
+import MyAccount from './pages/Dashboard/UserAccount/MyAccount';
+import DoctorDashboard from './pages/Dashboard/DoctorAccount/DoctorDashboard';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<App/>}>
-      <Route index path='/' element={<Protected><Home/></Protected>}></Route>
-      <Route path='doctors' element={<Protected><Doctors/></Protected>}></Route>
-      <Route path='/doctors/:id' element={<Protected><DoctorDetails/></Protected>}></Route>
+      <Route index path='/' element={<Home/>}></Route>
+      <Route path='doctors' element={<Doctors/>}></Route>
+      <Route path='/doctors/:id' element={<DoctorDetails/>}></Route>
       <Route path='login' element={<Login/>}></Route>
       <Route path='register' element={<Signup/>}/>
-      <Route path='services' element={<Protected><Services/></Protected>}/>
-      <Route path='contact' element={<Protected><Contact/></Protected>}/>
+      <Route path='services' element={<Services/>}/>
+      <Route path='contact' element={<Contact/>}/>
+      <Route path='user/profile/me' element={<Protected allowedRoles={['patient']}><MyAccount/></Protected>}/>
+      <Route path='doctor/profile/me' element={<Protected allowedRoles={['doctor']}><DoctorDashboard/></Protected>}/>
     </Route>
   )
 )

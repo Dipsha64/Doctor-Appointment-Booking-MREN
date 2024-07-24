@@ -10,7 +10,7 @@ function App() {
   const user = useSelector(isAuthenticated);
   return (
     <div>
-      {Object.keys(user).length > 0 ? <Header/> : ''}
+      <Header/>
       <main className="min-h-[calc(100vh)]">
         <Outlet/>
       </main>

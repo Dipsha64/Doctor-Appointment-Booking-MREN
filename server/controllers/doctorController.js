@@ -1,4 +1,5 @@
 const doctorModel = require("../model/DoctorSchema");
+const bokingModel = require("../model/BookingSchema");
 
 const getSingleDoctor = async (req,res) =>{
     try{
@@ -79,4 +80,19 @@ const deleteDoctor = async (req,res) =>{
         console.log(error);
     }
 }
-module.exports = { getSingleDoctor,getAllDoctor,updateDoctor,deleteDoctor };
+
+const getDoctorProfile = async (req,res) => {
+    try {
+        const docId = req.docId;
+        const doctorData = await doctorModel.findById(docId).select("-password");
+        if(!doctorData){
+            res.json({message : "Doctor not found", status : false});
+        }
+        // Get Appointments of that selected doctor
+        const appointments = await bokingModel.find({ doctor : docId });
+        res.json({message : "Doctor Profile is getting successfully",status : true, data:{doctorData,appointments}});
+    } catch (error) {
+        console.log(error);
+    }
+}
+module.exports = { getSingleDoctor,getAllDoctor,updateDoctor,deleteDoctor, getDoctorProfile };

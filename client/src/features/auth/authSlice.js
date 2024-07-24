@@ -4,7 +4,8 @@ import { loginUserAPI, signOutAPI } from "./authAPI";
 const initialState = {
     patientInfo : {},
     success : false,
-    error : null
+    error : null,
+    token : null
 }
 
 export const loginAsyncSlice = createAsyncThunk('user/loginAPI',async(data)=>{
@@ -25,11 +26,13 @@ const authSlice = createSlice({
         builder
         .addCase(loginAsyncSlice.pending,(state,action)=>{
             state.patientInfo = {};
+            state.token = null;
             state.success = false;
             state.error = null;
         })
         .addCase(loginAsyncSlice.fulfilled,(state,action)=>{
             state.patientInfo = action.payload.data;
+            state.token = action.payload.token;
             state.success = true;
             state.error = false;
         })
@@ -39,5 +42,7 @@ const authSlice = createSlice({
     }
 })
 
-export const isAuthenticated = (state) => state.auth.patientInfo; 
+export const isAuthenticated = (state) => state.auth.patientInfo;
+export const authorisedToken = (state) => state.auth.token;
+
 export default authSlice.reducer;

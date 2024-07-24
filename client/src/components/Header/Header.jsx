@@ -1,9 +1,9 @@
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../../assets/images/logo.png";
 import { useState} from "react";
-import { FaUser } from "react-icons/fa6";
-import { useDispatch } from "react-redux";
-import { signOutAsync } from "../../features/auth/authSlice";
+// import { FaUser } from "react-icons/fa6";
+import { useDispatch, useSelector } from "react-redux";
+import { signOutAsync, isAuthenticated } from "../../features/auth/authSlice";
 
 function Header() {
     const [showMenu, setShowMenu ] = useState(false);
@@ -27,6 +27,7 @@ function Header() {
     ];
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const loginUser = useSelector(isAuthenticated);
     const handleMenu = () =>{
         setShowMenu(preve => !preve);
     }
@@ -34,22 +35,6 @@ function Header() {
         dispatch(signOutAsync());
         navigate("/login")
     }
-
-    // const handleStickyheader = () =>{
-    //     window.addEventListener("scroll",()=>{
-    //         if(document.body.scrollTop > 80 || document.documentElement.scrollTop > 80){
-    //             headerRef.current.classList.add('sticky_header');
-    //         }
-    //         else {
-    //             headerRef.current.classList.remove('sticky_header');
-    //         }
-    //     })
-    // }
-
-    // useEffect(()=>{
-    //     handleStickyheader()
-    //     return ()=> window.removeEventListener("scroll",handleStickyheader);
-    // })
     return (
         <>
        <nav className="bg-slate-100">
@@ -68,20 +53,27 @@ function Header() {
                         </div>
                     </div>
                     <div className="flex justify-center items-center">
+                        { loginUser && Object.keys(loginUser).length > 0 ? 
                         <div className="text-slate-900">
-                            <div className="text-2xl border-2 border-solid border-slate-600 p-1 cursor-pointer rounded-full cursor-pointer" onClick={handleMenu}>
-                                <FaUser />
+                            <div className="text-2xl border-solid border-black p-1 cursor-pointer rounded-full cursor-pointer" onClick={handleMenu}>
+                                <img src={loginUser.photo} alt="profile-image" className="w-full rounded-full w-[45px] h-[45px]"/>
+                                {/* <FaUser /> */}
                             </div>
                             { showMenu && 
                                 <div className="absolute bg-white py-3 px-2 shadow drop-shadow-md flex flex-col text-base font-normal leading-6">
-                                    <Link to={"/setting"}><span className="whitespace-nowrap cursor-pointer">Setting</span></Link>
+                                    { loginUser.role === "patient" ? <Link to={"/user/profile/me"}><span className="whitespace-nowrap cursor-pointer">Profile</span></Link>
+                                    : 
+                                    <Link to={"/doctor/profile/me"}><span className="whitespace-nowrap cursor-pointer">Profile</span></Link>}
+                                    
                                     <span className="whitespace-nowrap cursor-pointer" onClick={handleLogout}>Logout</span>
                                 </div>
                             }
                         </div>
-                        {/* <div className="text-slate-900">
-                            <button className="border-1 border-solid rounded-lg bg-pink-600 text-white w-fit py-3 px-8 text-base font-semibold">Login</button>
-                        </div> */}
+                        :
+                        <div className="text-slate-900">
+                            <Link to={"/login"}><button className="border-1 border-solid rounded-full bg-[#f72585] text-white w-fit py-3 px-8 text-base font-semibold" >Login</button></Link>
+                        </div>
+                        }
                     </div>
                 </div>
             </div>
