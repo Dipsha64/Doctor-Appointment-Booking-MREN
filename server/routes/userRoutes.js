@@ -5,7 +5,7 @@ const { authenticate, restrict } = require("../auth/verifyToken");
 
 router.get("/:id",authenticate, restrict(['patient']) ,getSingleUser);
 router.get("/",authenticate,restrict(['admin']),getAllUser);
-router.put("/:id",authenticate,restrict(['patient']),updateUser);
+router.put("/:id",updateUser);
 router.delete("/:id",authenticate,restrict(['patient']),deleteUser);
 router.post("/profile/me",authenticate,restrict(['patient']),getUserProfile);
 router.post("/appointment",authenticate,restrict(['patient']),getMyAppointments);

@@ -58,6 +58,10 @@ const MyAccount = () => {
                     <div className="text-center mt-4">
                         <h3 className="text-[18px] leading-[30px] font-bold">{loginUser.name}</h3>
                     </div>
+                    <div className="mt-[100px] w-full">
+                        <button className="w-full bg-[#181A1E] p-3 text-[16px] leading-7 rounded-md text-white">Logout</button>
+                        <button className="w-full mt-[20px] bg-red-600 p-3 text-[16px] leading-7 rounded-md text-white">Logout</button>
+                    </div>
                 </div>
 
                 <div className="md:col-span-2 md:px-[30px]">

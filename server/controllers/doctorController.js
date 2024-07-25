@@ -83,7 +83,7 @@ const deleteDoctor = async (req,res) =>{
 
 const getDoctorProfile = async (req,res) => {
     try {
-        const docId = req.docId;
+        const docId = req.body.id;
         const doctorData = await doctorModel.findById(docId).select("-password");
         if(!doctorData){
             res.json({message : "Doctor not found", status : false});

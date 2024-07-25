@@ -38,6 +38,7 @@ const getAllUser = async (req,res) =>{
 const updateUser = async (req,res) =>{
     try{
         const id = req.params.id;
+        console.log("UPDAAAA" , req.params);
         const updateUser = await userModel.findByIdAndUpdate(id,{$set : req.body},{new : true});
         res.json({message : "User Updated successfully", status : true, data: updateUser});
     }
@@ -88,9 +89,9 @@ const getMyAppointments = async (req,res) => {
         const doctorId = booking.map(el=>el.doctor.id);
         console.log("doctorId..." ,doctorId);
         // step-3 retrive doctors from docto IDS
-        if(doctorId){
+        if(doctorId !== " "){
             const doctor = doctorModel.find({ _id : {$in : doctorId}}).select("-password");
-            res.json({message : "Appointment are getting.",data : doctor, status : true});
+            res.json({message : "Appointment are getting.",data : doctor.toArray(), status : true});
         }
         else{
             res.json({message : "There are something wrong in appointments booking.", status : false});

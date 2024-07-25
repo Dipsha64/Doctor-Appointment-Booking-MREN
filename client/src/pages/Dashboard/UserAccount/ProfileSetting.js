@@ -3,24 +3,54 @@ import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 // import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useState } from "react";
-// import { useDispatch } from "react-redux";
-// import { loginAsyncSlice } from "../../../features/auth/authSlice";
+import { useState, useEffect } from "react";
+import { updateUser } from "../../../utils/APIRoutes";
+import axios from "axios";
+import { authorisedToken } from "../../../features/auth/authSlice";
+import { useSelector } from "react-redux";
 
 function ProfileSetting({profileData}) {
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit,setValue, formState: { errors } } = useForm();
+    const loginToken = useSelector(authorisedToken);
     console.log("ERR",errors);
     console.log("profileData....Component" ,profileData);
     const [ formData, setFormData ] = useState({
-        name : "",
-        email : "",
-        bloodType : "",
-        gender : ""
+        name : '',
+        email : '',
+        bloodType : '',
+        gender : '',
     })
+    useEffect(()=>{
+        setFormData({
+            name : profileData && profileData.name ? profileData.name : '',
+            email : profileData && profileData.email ? profileData.email : '',
+            bloodType : profileData && profileData.bloodType ? profileData.bloodType : '',
+            gender : profileData && profileData.gender ? profileData.gender : '',
+        });
+        setValue("name",profileData.name ? profileData.name : '');
+        setValue("email",profileData.email ? profileData.email : '');
+        setValue("bloodType",profileData.bloodType ? profileData.bloodType : '');
+        setValue("gender",profileData.gender ? profileData.gender : '');
+    },[])
+    const updateProfile = (data) => {
+        console.log("UPDATEEE DATAA", data);
+        axios.put(updateUser+profileData._id,data,{
+            headers : {
+                'Authorization': 'Bearer ' + loginToken
+            }
+        })
+        .then((result)=>{
+            console.log("result......" ,result);
+        })
+        .catch((error)=>{
+            console.log(error);
+        })
+    }
+
     return ( 
         <>
         <div>
-        <form >
+        <form noValidate onSubmit={handleSubmit(updateProfile)}>
             <div className="form-field">
                 <input type="text" placeholder="Enter your name" name="name" className="login-field"
                     {...register("name",{ required : "Name is required."})}/>

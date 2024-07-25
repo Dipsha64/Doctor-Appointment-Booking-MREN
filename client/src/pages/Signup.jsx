@@ -85,14 +85,14 @@ function Signup() {
                         </span>
                         <div className="drop-down-field">
                             <div className="left-dropdown">
-                                <label for="cars">Are you a : </label>
-                                <select {...register("role")} name="category" id="category">
+                                <label for="role">Are you a : </label>
+                                <select {...register("role")} name="role" id="role">
                                     <option value="patient">Patient</option>
                                     <option value="doctor">Doctor</option>
                                 </select>
                             </div>
                             <div className="right-dropdown">
-                                <label for="cars">Gender : </label>
+                                <label for="gender">Gender : </label>
                                 <select {...register("gender")} name="gender" id="gender">
                                     <option value="male">Male</option>
                                     <option value="female">Female</option>
