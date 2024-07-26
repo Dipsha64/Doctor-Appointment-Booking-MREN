@@ -55,10 +55,66 @@ function DoctorDashboard() {
             console.log(error);
         })
     }
-
     useEffect(()=>{
         getProfileData();
     },[])
+
+    // Reusable function to add new column in clone view
+    const addItem = (key,item) => {
+        setProfileData(prevData => ({ ...prevData, [key] : [...prevData[key],item]}));
+    }
+    const handleInputChange = (key,index, event) => {
+        const { name, value } = event.target;
+        setProfileData(prevData => {
+            const updateItems = prevData[key];
+            updateItems[index][name] = value;
+            return {...prevData, [key] : updateItems}
+        })
+    }
+    const deleteItem = (key, index) => {
+        setProfileData(prevData => ({...prevData, [key] : prevData[key].filter((_,i)=> i !== index) }))
+    }
+
+    /******* Qualification Method Start *******/
+    const handleQualification = () => {
+        addItem("qualifications",{
+            startingDate : '',
+            endingDate : '',
+            degree : '',
+            univercity : ''
+        })
+    }
+    const handleinputFieldChange = (event, index,fieldKey) => {
+        handleInputChange(fieldKey,index, event);
+        console.log("NEW PROFIELLEE", profileData);
+    }
+    const handleRemoveQualification = (index,fieldKey) => {
+        deleteItem(fieldKey,index);
+    }
+    /******* Qualification Method End *******/
+    /******* Experience Method Start *******/
+    const handleExperience = () => {
+        addItem("experiences",{
+            startingDate : '',
+            endingDate : '',
+            position : '',
+            hospital : ''
+        })
+    }
+    /******* Experience Method End *******/
+    /******* TimeSlot Method Start *******/
+    const handleTimeSlot = () => {
+        addItem("timeSlots",{
+            day : '',
+            startingDate : '',
+            endingDate : ''
+        })
+    }
+    /******* TimeSlot Method End *******/ 
+    const handleUpdateProfile = () => {
+        console.log("UPDATE PROFILE", profileData);
+    }
+
     return ( 
         <>
         <div className="max-w-[1170px] px-5 pt-12 mx-auto">
@@ -99,7 +155,8 @@ function DoctorDashboard() {
                                 </div>
                             </div>}
                         { tab === "appointment" && <div>appointment</div>}
-                        { tab === "profile" && <Profile profileData={profileData}/>}
+                        { tab === "profile" && <Profile profileData={profileData} addNewQualification={handleQualification} inputFieldChange={handleinputFieldChange} removeFieldRow={handleRemoveQualification}
+                            addNewExperience={handleExperience} addNewTimeSlot={handleTimeSlot} updateProfile={handleUpdateProfile} />}
                     </div>
                 </div>
             </div>
