@@ -25,12 +25,29 @@ function DoctorDashboard() {
             if(res.data && res.data.status === true){
                 console.log("PROFILELE" ,res.data.data.doctorData);
                 if(res.data.data.doctorData.qualifications.length == 0){
-                    res.data.data.doctorData.qualifications.push({
-                        startingDate : '',
-                        endingDate : '',
-                        degree : '',
-                        univercity : ''
-                    }) 
+                    if(res.data.data.doctorData.qualifications.length === 0){
+                        res.data.data.doctorData.qualifications.push({
+                            startingDate : '',
+                            endingDate : '',
+                            degree : '',
+                            univercity : ''
+                        }) 
+                    }
+                    if(res.data.data.doctorData.experiences.length === 0){
+                        res.data.data.doctorData.experiences.push({
+                            startingDate : '',
+                            endingDate : '',
+                            position : '',
+                            hospital : ''
+                        }) 
+                    }
+                    if(res.data.data.doctorData.timeSlots.length === 0){
+                        res.data.data.doctorData.timeSlots.push({
+                            startingDate : '',
+                            endingDate : '',
+                            day : ''
+                        })
+                    }
                 }
                 setProfileData(res.data.data.doctorData);
             }
