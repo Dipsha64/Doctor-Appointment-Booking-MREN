@@ -1,7 +1,21 @@
 import "../Doctors/DoctorStyle.css";
-
+import { useEffect, useState } from "react";
+import { getAllDoctor } from "../../utils/APIRoutes";
+import axios from "axios";
 
 function Doctors() {
+    const [doctorData, setDoctorData ] = useState([]);
+    useEffect(()=>{
+        axios.get(getAllDoctor).then((res)=>{
+            console.log("RESSSSSSS" , res);
+            if(res.data && res.data.status === true){
+                setDoctorData(res.data.data)
+            }
+        }).catch((error)=>{
+            console.log(error);
+        })
+    },[])
+
     return ( 
         <>
         {/* <section>
@@ -80,6 +94,22 @@ function Doctors() {
                         </svg>
                         </button>
                     </div>
+                </div>
+                <div className="doctor-wrapper">
+                    { doctorData && doctorData.length > 0 ? 
+                        doctorData.map((item,index)=>{
+                        return <article>
+                                    <div className="doctor-info">
+                                        <img src={item.photo} alt="docImage1"/>
+                                        <h4>{item.name}</h4>
+                                        <p>{item.specialization}</p>
+                                        {/* <img className="moreInfo" src={moreInfo} alt="moreInfo"/> */}
+                                    </div>
+                                </article>
+                        })
+                        
+                    : "No Doctor Found"}
+                    
                 </div>
             </div>
         </div>

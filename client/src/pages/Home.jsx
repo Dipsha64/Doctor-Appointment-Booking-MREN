@@ -7,6 +7,7 @@ import service2 from "../assets/images/service2.png";
 import service3 from "../assets/images/service3.png";
 import ServicesList from "../components/Services/ServicesList";
 // import Footer from "../components/Footer/Footer";
+import DoctorCard from "../components/Home/DoctorCard";
 
 function Home() {
     return ( 
@@ -80,8 +81,10 @@ function Home() {
                 <ServicesList/>
             </div>
             <div className="doctors-section">
-                <h2>Our Great Doctors</h2>
-                <p>World-class care for everyone. Our health system offers unmatched, expert health care.</p>
+                <DoctorCard/>
+                <h2>Our Great Doctors </h2>
+                {/* Video Time : 1:26:15  */}
+                {/* <p>World-class care for everyone. Our health system offers unmatched, expert health care.</p>
                 <div className="doctor-details">
                     <article>
                         <img src={docImage1} alt="docImage1"/>
@@ -95,11 +98,8 @@ function Home() {
                         <img src={docImage3} alt="docImage3"/>
                         <h4>Dr. Alfaz Ahmed</h4>
                     </article>
-                </div>
+                </div> */}
             </div>
-            {/* <div>
-                <Footer/>
-            </div> */}
         </div>
         </>
     );

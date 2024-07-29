@@ -91,7 +91,7 @@ const getMyAppointments = async (req,res) => {
         // step-3 retrive doctors from docto IDS
         if(doctorId !== " "){
             const doctor = doctorModel.find({ _id : {$in : doctorId}}).select("-password");
-            res.json({message : "Appointment are getting.",data : doctor.toArray(), status : true});
+            res.json({message : "Appointment are getting.",data : doctor, status : true});
         }
         else{
             res.json({message : "There are something wrong in appointments booking.", status : false});

@@ -33,7 +33,6 @@ function ProfileSetting({profileData}) {
         setValue("gender",profileData.gender ? profileData.gender : '');
     },[])
     const updateProfile = (data) => {
-        console.log("UPDATEEE DATAA", data);
         axios.put(updateUser+profileData._id,data,{
             headers : {
                 'Authorization': 'Bearer ' + loginToken

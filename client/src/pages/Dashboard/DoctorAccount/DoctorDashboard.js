@@ -8,12 +8,24 @@ import { MdError } from "react-icons/md";
 import starImage from "../../../assets/images/Star.png";
 import DoctorAbout from "../../Doctors/DoctorAbout";
 import Profile from "./Profile";
+import { updateDoctorProfile } from "../../../utils/APIRoutes";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Appointment from "./Appointment";
+import uploadCloudinary from "../../../utils/uploadCloudinary"
 
 function DoctorDashboard() {
     const loginUser = useSelector(isAuthenticated);
     const loginToken = useSelector(authorisedToken);
     const [ tab, setTab ] = useState("overview");
     const [ profileData, setProfileData ] = useState([]);
+    const toastOption = {
+        position : "top-right",
+        autoClose : 8000,
+        pauseOnHover : true,
+        theme : "dark",
+        draggable : true
+    }
 
     const getProfileData = () => {
         axios.post(getDoctorProfile, {id:loginUser.id}, {
@@ -23,7 +35,6 @@ function DoctorDashboard() {
         })
         .then((res)=>{
             if(res.data && res.data.status === true){
-                console.log("PROFILELE" ,res.data.data.doctorData);
                 if(res.data.data.doctorData.qualifications.length == 0){
                     if(res.data.data.doctorData.qualifications.length === 0){
                         res.data.data.doctorData.qualifications.push({
@@ -86,7 +97,6 @@ function DoctorDashboard() {
     }
     const handleinputFieldChange = (event, index,fieldKey) => {
         handleInputChange(fieldKey,index, event);
-        console.log("NEW PROFIELLEE", profileData);
     }
     const handleRemoveQualification = (index,fieldKey) => {
         deleteItem(fieldKey,index);
@@ -110,9 +120,31 @@ function DoctorDashboard() {
             endingDate : ''
         })
     }
-    /******* TimeSlot Method End *******/ 
+    /******* TimeSlot Method End *******/
+    const manageInputFieldChange = (newData) => {
+        setProfileData(newData);
+    } 
+
+    const changeProfile = async (e) => {
+        console.log("FILEEEEE", e.target.files);
+        const imageData = e.target.files[0];
+        const data = await uploadCloudinary(imageData);
+        setProfileData(prev => ({...prev, ['photo']: data}));
+    }
+
     const handleUpdateProfile = () => {
-        console.log("UPDATE PROFILE", profileData);
+        axios.put(updateDoctorProfile+profileData._id,profileData,{
+            headers : {
+                'Authorization': 'Bearer ' + loginToken
+            }
+        })
+        .then((result)=>{
+            toast(result.data.message,toastOption);
+            console.log("result..." ,result);
+        })
+        .catch((error)=>{
+            console.log(error);
+        })
     }
 
     return ( 
@@ -147,20 +179,21 @@ function DoctorDashboard() {
                                                 (223)
                                             </span>
                                         </div>
-                                        <p className="text_para font-[15px] leading-6 lg:max-w-[390px]">Doctor Bio</p>
+                                        <p className="text_para font-[15px] leading-6 lg:max-w-[390px]">{profileData.bio}</p>
                                     </div>
                                 </div>
                                 <div>
                                     <DoctorAbout profileData={profileData}/>
                                 </div>
                             </div>}
-                        { tab === "appointment" && <div>appointment</div>}
+                        { tab === "appointment" && <Appointment profileData={profileData}/>}
                         { tab === "profile" && <Profile profileData={profileData} addNewQualification={handleQualification} inputFieldChange={handleinputFieldChange} removeFieldRow={handleRemoveQualification}
-                            addNewExperience={handleExperience} addNewTimeSlot={handleTimeSlot} updateProfile={handleUpdateProfile} />}
+                            addNewExperience={handleExperience} addNewTimeSlot={handleTimeSlot} manageInputField={manageInputFieldChange} handleFileUpload={changeProfile} updateProfile={handleUpdateProfile} />}
                     </div>
                 </div>
             </div>
         </div>
+        <ToastContainer/>
         </>
     );
 }

@@ -52,10 +52,10 @@ const updateDoctor = async (req,res) =>{
         const id = req.params.id;
         const updatedData = await doctorModel.findByIdAndUpdate(id,{$set:req.body},{new: true});
         if(updatedData){
-            res.json({message : "Doctor updated successfully",status : true, data:updatedData});
+            res.json({message : "Doctor profile updated successfully",status : true, data:updatedData});
         }
         else{
-            res.json({message : "User not updated.",status : false});
+            res.json({message : "Profile not updated.",status : false});
         }
     }
     catch(error){

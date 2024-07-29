@@ -7,3 +7,4 @@ export const getUserProfile = `${host}/api/users/profile/me`;
 export const getUserAppointment = `${host}/api/users/appointment`;
 export const updateUser = `${host}/api/users/`;
 export const getDoctorProfile = `${host}/api/doctor/profile/me`;
+export const updateDoctorProfile = `${host}/api/doctor/`;

@@ -27,6 +27,7 @@ const doctorSchema = mongoose.Schema({
     specialization : {
         type : String
     },
+    gender: { type: String },
     qualifications: {
         type: Array,
     },
