@@ -37,27 +37,27 @@ function DoctorDashboard() {
             if(res.data && res.data.status === true){
                 if(res.data.data.doctorData.qualifications.length == 0){
                     if(res.data.data.doctorData.qualifications.length === 0){
-                        res.data.data.doctorData.qualifications.push({
-                            startingDate : '',
-                            endingDate : '',
-                            degree : '',
-                            univercity : ''
-                        }) 
+                        // res.data.data.doctorData.qualifications.push({
+                        //     startingDate : '',
+                        //     endingDate : '',
+                        //     degree : '',
+                        //     univercity : ''
+                        // }) 
                     }
                     if(res.data.data.doctorData.experiences.length === 0){
-                        res.data.data.doctorData.experiences.push({
-                            startingDate : '',
-                            endingDate : '',
-                            position : '',
-                            hospital : ''
-                        }) 
+                        // res.data.data.doctorData.experiences.push({
+                        //     startingDate : '',
+                        //     endingDate : '',
+                        //     position : '',
+                        //     hospital : ''
+                        // }) 
                     }
                     if(res.data.data.doctorData.timeSlots.length === 0){
-                        res.data.data.doctorData.timeSlots.push({
-                            startingDate : '',
-                            endingDate : '',
-                            day : ''
-                        })
+                        // res.data.data.doctorData.timeSlots.push({
+                        //     startingDate : '',
+                        //     endingDate : '',
+                        //     day : ''
+                        // })
                     }
                 }
                 setProfileData(res.data.data.doctorData);
@@ -129,7 +129,7 @@ function DoctorDashboard() {
         console.log("FILEEEEE", e.target.files);
         const imageData = e.target.files[0];
         const data = await uploadCloudinary(imageData);
-        setProfileData(prev => ({...prev, ['photo']: data}));
+        setProfileData(prev => ({...prev, ['photo']: data.url}));
     }
 
     const handleUpdateProfile = () => {

@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../../assets/images/logo.png";
 import { useState} from "react";
-// import { FaUser } from "react-icons/fa6";
+import { FaUser } from "react-icons/fa6";
 import { useDispatch, useSelector } from "react-redux";
 import { signOutAsync, isAuthenticated } from "../../features/auth/authSlice";
 
@@ -28,6 +28,7 @@ function Header() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const loginUser = useSelector(isAuthenticated);
+    console.log("loginUser..." ,loginUser);
     const handleMenu = () =>{
         setShowMenu(preve => !preve);
     }
@@ -54,12 +55,11 @@ function Header() {
                     </div>
                     <div className="flex justify-center items-center">
                         { loginUser && Object.keys(loginUser).length > 0 ? 
-                        <div className="text-slate-900">
+                        <div className="text-slate-900"> 
                             <div className="text-2xl border-solid border-black p-1 cursor-pointer rounded-full cursor-pointer" onClick={handleMenu}>
-                                <img src={loginUser.photo} alt="profile-image" className="w-full rounded-full w-[45px] h-[45px]"/>
-                                {/* <FaUser /> */}
+                                {loginUser.photo !== null ? <img src={loginUser.photo} alt="profile-image" className="w-full rounded-full w-[45px] h-[45px]"/> : <FaUser />}
                             </div>
-                            { showMenu && 
+                            { showMenu &&
                                 <div className="absolute bg-white py-3 px-2 shadow drop-shadow-md flex flex-col text-base font-normal leading-6">
                                     { loginUser.role === "patient" ? <Link to={"/user/profile/me"}><span className="whitespace-nowrap cursor-pointer">Profile</span></Link>
                                     : 

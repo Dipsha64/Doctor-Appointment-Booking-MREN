@@ -25,7 +25,8 @@ const doctorSchema = mongoose.Schema({
     },
     //Fields for doctor role Only
     specialization : {
-        type : String
+        type : String,
+        default: "surgeon",
     },
     gender: { type: String },
     qualifications: {

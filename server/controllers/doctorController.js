@@ -21,10 +21,10 @@ const getSingleDoctor = async (req,res) =>{
 
 const getAllDoctor = async (req,res) => {
     try{
-        const query = req.query;
+        const query = req.query.query;
         let fetchData = null;
-        if(Object.keys(query).length > 0){
-            fetchData = await doctorModel.find({isApproved : "approved",
+        if(query !== undefined){
+            fetchData = await doctorModel.find({
             $or:[
                 {name : {$regex : query, $options : "i"}},
                 {specialization : {$regex: query, $options : "i"}}

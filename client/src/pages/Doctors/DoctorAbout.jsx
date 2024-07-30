@@ -12,10 +12,10 @@ const DoctorAbout = ({profileData}) => {
             <ul className="pt-4 md:p-5">
                 { profileData.qualifications && profileData.qualifications.length > 0 ? 
                     profileData.qualifications.map((item, index)=>{
-                        return <li className="flex flex-col sm:flex-row sm:justify-between sm:items-end md:gap-5 mb-[30px]">
+                        return <li className="flex flex-col sm:flex-row sm:justify-between sm:items-end md:gap-5 mb-[30px]" key={index}>
                             <div className="flex flex-col">
                                 <span className="text-irisBlueColor text-[15px] leading-6 font-semibold">
-                                    {new Date(item.startingDate).toDateString()} -  {new Date().toDateString()}
+                                    {new Date(item.startingDate).toDateString()} -  {new Date(item.endingDate).toDateString()}
                                 </span>
                                 <span className="">{item.degree}</span>
                             </div>
@@ -32,10 +32,10 @@ const DoctorAbout = ({profileData}) => {
             <ul className="pt-4 md:p-5">
                 { profileData.experiences && profileData.experiences.length > 0 ? 
                     profileData.experiences.map((item, index)=>{
-                        return <li className="flex flex-col sm:flex-row sm:justify-between sm:items-end md:gap-5 mb-[30px]">
+                        return <li className="flex flex-col sm:flex-row sm:justify-between sm:items-end md:gap-5 mb-[30px]" key={index}>
                             <div className="flex flex-col">
                                 <span className="text-irisBlueColor text-[15px] leading-6 font-semibold">
-                                    {new Date(item.startingDate).toDateString()} -  {new Date().toDateString()}
+                                    {new Date(item.startingDate).toDateString()} -  {new Date(item.endingDate).toDateString()}
                                 </span>
                                 <span className="">{item.position}</span>
                             </div>

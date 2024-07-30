@@ -81,24 +81,9 @@ function Home() {
                 <ServicesList/>
             </div>
             <div className="doctors-section">
-                <DoctorCard/>
                 <h2>Our Great Doctors </h2>
-                {/* Video Time : 1:26:15  */}
-                {/* <p>World-class care for everyone. Our health system offers unmatched, expert health care.</p>
-                <div className="doctor-details">
-                    <article>
-                        <img src={docImage1} alt="docImage1"/>
-                        <h4>Dr. Alfaz Ahmed</h4>
-                    </article>
-                    <article>
-                        <img src={docImage2} alt="docImage2"/>
-                        <h4>Dr. Alfaz Ahmed</h4>
-                    </article>
-                    <article>
-                        <img src={docImage3} alt="docImage3"/>
-                        <h4>Dr. Alfaz Ahmed</h4>
-                    </article>
-                </div> */}
+                <DoctorCard/>
+                
             </div>
         </div>
         </>
