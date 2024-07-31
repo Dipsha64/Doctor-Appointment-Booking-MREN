@@ -2,10 +2,18 @@ import { getAllDoctor } from "../../utils/APIRoutes";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { BsArrowDownRightSquare } from "react-icons/bs";
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function DoctorCard() {
     const [doctorData, setDoctorData ] = useState([]);
+    const toastOption = {
+        position : "top-right",
+        autoClose : 8000,
+        pauseOnHover : true,
+        theme : "dark",
+        draggable : true
+    }
     useEffect(()=>{
         axios.get(getAllDoctor).then((res)=>{
             if(res.data && res.data.status === true){
@@ -13,6 +21,7 @@ function DoctorCard() {
             }
         }).catch((error)=>{
             console.log(error);
+            toast(error.response.data.message, toastOption);
         })
     },[])
 
@@ -38,6 +47,7 @@ function DoctorCard() {
                     })
                 : "No Doctor register yet!!"}
         </div>
+        <ToastContainer/>
         </>
     );
 }

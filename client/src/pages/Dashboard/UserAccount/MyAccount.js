@@ -5,6 +5,8 @@ import MyBooking from "./MyBooking";
 import ProfileSetting from "./ProfileSetting";
 import { getUserProfile, getUserAppointment } from "../../../utils/APIRoutes";
 import axios from "axios";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const MyAccount = () => {
     const loginUser = useSelector(isAuthenticated);
@@ -12,6 +14,14 @@ const MyAccount = () => {
     const [tab, setTab] = useState("booking");
     const [ profileData, setProfileData ] = useState([]);
     const [ appointmentData, setAppointmentData ] = useState([]);
+
+    const toastOption = {
+        position : "top-right",
+        autoClose : 8000,
+        pauseOnHover : true,
+        theme : "dark",
+        draggable : true
+    }
 
     const getProfileData = () => {
         axios.post(getUserProfile, {id:loginUser.id}, {
@@ -25,6 +35,7 @@ const MyAccount = () => {
             }
         }).catch((error)=>{
             console.log(error);
+            toast(error.response.data.message, toastOption);
         })
     }
     const getAppointmentData = () => {
@@ -40,6 +51,7 @@ const MyAccount = () => {
         })
         .catch((error)=>{
             console.log();
+            toast(error.response.data.message, toastOption);
         })
     }
 
@@ -78,6 +90,7 @@ const MyAccount = () => {
                 </div>
             </div>
         </div>
+        <ToastContainer/>
         </>
     );
 }

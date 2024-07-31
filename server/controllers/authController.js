@@ -4,7 +4,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 const generateToken = (obj) =>{
-    return jwt.sign({id : obj.id, role : obj.role},process.env.JWT_SECRET_KEY,{expiresIn : '15d'});
+    return jwt.sign({id : obj.id, role : obj.role},process.env.JWT_SECRET_KEY,{expiresIn : '365d'});
 }
 
 const register = async (req,res) =>{

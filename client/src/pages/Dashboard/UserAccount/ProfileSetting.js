@@ -1,13 +1,13 @@
 import "../../../assets/CSS/loginStyle.css"
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
-// import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import { useState, useEffect } from "react";
 import { updateUser } from "../../../utils/APIRoutes";
 import axios from "axios";
 import { authorisedToken } from "../../../features/auth/authSlice";
 import { useSelector } from "react-redux";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function ProfileSetting({profileData}) {
     const { register, handleSubmit,setValue, formState: { errors } } = useForm();
@@ -19,7 +19,15 @@ function ProfileSetting({profileData}) {
         email : '',
         bloodType : '',
         gender : '',
-    })
+    });
+    const toastOption = {
+        position : "top-right",
+        autoClose : 8000,
+        pauseOnHover : true,
+        theme : "dark",
+        draggable : true
+    }
+
     useEffect(()=>{
         setFormData({
             name : profileData && profileData.name ? profileData.name : '',
@@ -40,9 +48,11 @@ function ProfileSetting({profileData}) {
         })
         .then((result)=>{
             console.log("result......" ,result);
+            toast(result.data.message, toastOption);
         })
         .catch((error)=>{
             console.log(error);
+            toast(error.response.data.message, toastOption);
         })
     }
 
@@ -83,6 +93,7 @@ function ProfileSetting({profileData}) {
             <p className="another-view">Create New Account <Link to="/register" className="add-links">Register</Link></p>
         </form>
         </div>
+        <ToastContainer/>
         </>
     );
 }

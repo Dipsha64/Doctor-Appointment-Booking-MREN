@@ -13,6 +13,7 @@ const getAllReview = async (req,res) => {
 
 const createReview =async(req,res) => {
     try {
+        console.log("REQQQQQ", req.body);
         if(!req.body.doctor){
             req.body.doctor = req.params.doctorId;
         }

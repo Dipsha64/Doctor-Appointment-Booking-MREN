@@ -4,10 +4,19 @@ import { getAllDoctor } from "../../utils/APIRoutes";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { BsArrowDownRightSquare } from "react-icons/bs";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Doctors() {
     const [doctorData, setDoctorData ] = useState([]);
     const [searchQuery, setSearchQuery] = useState('');
+    const toastOption = {
+        position : "top-right",
+        autoClose : 8000,
+        pauseOnHover : true,
+        theme : "dark",
+        draggable : true
+    }
 
     useEffect(()=>{
         axios.get(getAllDoctor).then((res)=>{
@@ -17,6 +26,7 @@ function Doctors() {
             }
         }).catch((error)=>{
             console.log(error);
+            toast(error.response.data.message, toastOption);
         })
     },[]);
 
@@ -35,6 +45,7 @@ function Doctors() {
         })
         .catch((error) => {
           console.error('Error fetching doctors:', error);
+          toast(error.response.data.message, toastOption);
         });
     }
 
@@ -91,6 +102,7 @@ function Doctors() {
                 </div>
             </div>
         </div>
+        <ToastContainer/>
         </>
     );
 }

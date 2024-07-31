@@ -8,3 +8,5 @@ export const getUserAppointment = `${host}/api/users/appointment`;
 export const updateUser = `${host}/api/users/`;
 export const getDoctorProfile = `${host}/api/doctor/profile/me`;
 export const updateDoctorProfile = `${host}/api/doctor/`;
+export const createReview = `${host}/api/doctor/`;
+export const getSingleDoctor = `${host}/api/doctor/`;

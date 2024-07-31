@@ -1,6 +1,6 @@
 import Tabs from "./Tabs";
 import { useState, useEffect } from "react";
-import { getDoctorProfile } from "../../../utils/APIRoutes";
+import { getDoctorProfile, updateDoctorProfile } from "../../../utils/APIRoutes";
 import { isAuthenticated, authorisedToken } from "../../../features/auth/authSlice";
 import axios from "axios";
 import { useSelector } from "react-redux";
@@ -8,7 +8,6 @@ import { MdError } from "react-icons/md";
 import starImage from "../../../assets/images/Star.png";
 import DoctorAbout from "../../Doctors/DoctorAbout";
 import Profile from "./Profile";
-import { updateDoctorProfile } from "../../../utils/APIRoutes";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Appointment from "./Appointment";
@@ -36,34 +35,35 @@ function DoctorDashboard() {
         .then((res)=>{
             if(res.data && res.data.status === true){
                 if(res.data.data.doctorData.qualifications.length == 0){
-                    if(res.data.data.doctorData.qualifications.length === 0){
-                        // res.data.data.doctorData.qualifications.push({
-                        //     startingDate : '',
-                        //     endingDate : '',
-                        //     degree : '',
-                        //     univercity : ''
-                        // }) 
-                    }
-                    if(res.data.data.doctorData.experiences.length === 0){
-                        // res.data.data.doctorData.experiences.push({
-                        //     startingDate : '',
-                        //     endingDate : '',
-                        //     position : '',
-                        //     hospital : ''
-                        // }) 
-                    }
-                    if(res.data.data.doctorData.timeSlots.length === 0){
-                        // res.data.data.doctorData.timeSlots.push({
-                        //     startingDate : '',
-                        //     endingDate : '',
-                        //     day : ''
-                        // })
-                    }
+                    // if(res.data.data.doctorData.qualifications.length === 0){
+                    //     // res.data.data.doctorData.qualifications.push({
+                    //     //     startingDate : '',
+                    //     //     endingDate : '',
+                    //     //     degree : '',
+                    //     //     univercity : ''
+                    //     // }) 
+                    // }
+                    // if(res.data.data.doctorData.experiences.length === 0){
+                    //     // res.data.data.doctorData.experiences.push({
+                    //     //     startingDate : '',
+                    //     //     endingDate : '',
+                    //     //     position : '',
+                    //     //     hospital : ''
+                    //     // }) 
+                    // }
+                    // if(res.data.data.doctorData.timeSlots.length === 0){
+                    //     // res.data.data.doctorData.timeSlots.push({
+                    //     //     startingDate : '',
+                    //     //     endingDate : '',
+                    //     //     day : ''
+                    //     // })
+                    // }
                 }
                 setProfileData(res.data.data.doctorData);
             }
         }).catch((error)=>{
             console.log(error);
+            toast(error.response.data.message, toastOption);
         })
     }
     useEffect(()=>{
@@ -144,6 +144,7 @@ function DoctorDashboard() {
         })
         .catch((error)=>{
             console.log(error);
+            toast(error.response.data.message, toastOption);
         })
     }
 

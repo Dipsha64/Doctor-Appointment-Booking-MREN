@@ -36,8 +36,9 @@ const authenticate = async (req,res,next) =>{
 const restrict = roles => async(req,res,next) => {
     // This userId is comes from authentication method
     const userId = req.userId;
+    console.log("DATAAAAA userId",userId);
     let user;
-    console.log("userId." ,userId);
+    console.log("userId..." ,userId);
     const patient = await userModel.findById(userId);
     const doctor = await doctorModel.findById(userId);
     if(patient){
@@ -48,6 +49,7 @@ const restrict = roles => async(req,res,next) => {
     }
     // console.log("user.." ,user);
     if(!roles.includes(user.role)){
+        console.log("NOT authorized");
         return res.status(401).json({message : "You're not authorized."});
     }
     next();
