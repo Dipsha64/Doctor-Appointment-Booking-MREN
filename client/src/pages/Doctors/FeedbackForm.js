@@ -12,7 +12,6 @@ import 'react-toastify/dist/ReactToastify.css';
 function FeedbackForm({onFormClose}) {
     const [ rating, setRating ] = useState(0);
     const [ hover, setHover ] = useState(0);
-    const [ reviewText, setReviewText ] = useState("");
     const loginToken = useSelector(authorisedToken);
     const { id } = useParams();
     const { register, handleSubmit, formState: { errors } } = useForm();

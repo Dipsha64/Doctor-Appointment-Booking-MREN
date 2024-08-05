@@ -10,3 +10,4 @@ export const getDoctorProfile = `${host}/api/doctor/profile/me`;
 export const updateDoctorProfile = `${host}/api/doctor/`;
 export const createReview = `${host}/api/doctor/`;
 export const getSingleDoctor = `${host}/api/doctor/`;
+export const getBookingSession = `${host}/api/booking/checkout-session/`;

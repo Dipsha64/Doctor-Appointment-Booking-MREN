@@ -11,12 +11,13 @@ const bookingSchema = mongoose.Schema({
     },
     ticketPrice : {
         type : String,
-        required : true
+        required : true,
+        default : 0
     },
-    appointmentDate : {
-        type : Date,
-        required : true
-    },
+    // appointmentDate : {
+    //     type : Date,
+    //     required : true
+    // },
     status : {
         type : String,
         enum : ["pending","approved", "cancelled"],

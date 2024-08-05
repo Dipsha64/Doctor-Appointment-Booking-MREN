@@ -16,6 +16,7 @@ import DoctorDetails from './pages/Doctors/DoctorDetails';
 import Contact from './pages/Contact';
 import MyAccount from './pages/Dashboard/UserAccount/MyAccount';
 import DoctorDashboard from './pages/Dashboard/DoctorAccount/DoctorDashboard';
+import CheckoutSession from './pages/CheckoutSession';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -29,6 +30,7 @@ const router = createBrowserRouter(
       <Route path='contact' element={<Contact/>}/>
       <Route path='user/profile/me' element={<Protected allowedRoles={['patient']}><MyAccount/></Protected>}/>
       <Route path='doctor/profile/me' element={<Protected allowedRoles={['doctor']}><DoctorDashboard/></Protected>}/>
+      <Route path='checkout-success' element={<CheckoutSession/>}/>
     </Route>
   )
 )

@@ -6,7 +6,6 @@ const authenticate = async (req,res,next) =>{
     // Get Token From Headers
     console.log("req..Authentication" ,req.id , req.role);
     const authToken = req.headers.authorization;
-
     // Check if token is exists or not
     if(!authToken || !authToken.startsWith("Bearer ")){
         return res.json({message : "No token, authorization denied",status : false});
@@ -36,9 +35,7 @@ const authenticate = async (req,res,next) =>{
 const restrict = roles => async(req,res,next) => {
     // This userId is comes from authentication method
     const userId = req.userId;
-    console.log("DATAAAAA userId",userId);
     let user;
-    console.log("userId..." ,userId);
     const patient = await userModel.findById(userId);
     const doctor = await doctorModel.findById(userId);
     if(patient){

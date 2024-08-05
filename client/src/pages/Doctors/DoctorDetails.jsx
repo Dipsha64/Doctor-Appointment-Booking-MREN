@@ -2,17 +2,30 @@ import { useEffect, useState } from "react";
 import DoctorAbout from "./DoctorAbout";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import { getSingleDoctor } from "../../utils/APIRoutes";
+import { getSingleDoctor, getBookingSession } from "../../utils/APIRoutes";
 import { useSelector } from "react-redux";
 import { authorisedToken } from "../../features/auth/authSlice";
 import DoctorFeedback from "./DoctorFeedback";
 import starImage from "../../assets/images/Star.png";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'
+
+import { loadStripe } from '@stripe/stripe-js';
+// import { Elements, useStripe, useElements, CardElement } from '@stripe/react-stripe-js';
 
 function DoctorDetails() {
+    const stripePromise = loadStripe('pk_test_51PigKG2LovzbtjBPPW5JebnGFQieOKN4D5cIOWbiCCXZWsyawG31rs03RZTNZKjaur0yZhMg4OwoccLgUJ0FeGz100MSDQtjNE');
     const [ tab, setTab ] = useState("about");
     const { id } = useParams();
     const [ profileData, setProfileData ] = useState({});
     const loginToken = useSelector(authorisedToken);
+    const toastOption = {
+        position : "top-right",
+        autoClose : 8000,
+        pauseOnHover : true,
+        theme : "dark",
+        draggable : true
+    }
 
     useEffect(()=>{
         axios.get(getSingleDoctor+`${id}`, {
@@ -22,7 +35,6 @@ function DoctorDetails() {
         })
         .then((res)=>{
             if(res.data && res.data.status === true){
-                console.log("DATAAAAA",res.data.data);
                 setProfileData(res.data.data);
             }
         })
@@ -30,6 +42,27 @@ function DoctorDetails() {
             console.log(error);
         })
     },[])
+
+    const handleBooking = () => {
+        console.log("Bookingggg" , id ,loginToken);
+        axios.post(getBookingSession+`${id}`,'',{
+            headers : {
+                'Authorization': 'Bearer ' + loginToken
+            }
+        })
+        .then(async(res)=>{
+            console.log("RESSSSSSSSS", res);
+            if(res.data && res.data.status == true){
+                window.location.href = res.data.session.url;              
+                // const { clientSecret } = await res.json();
+                // return clientSecret;  
+            }
+        })
+        .catch((error)=>{
+            console.log(error);
+            toast(error.response.data.message, toastOption);
+        })
+    }
 
     return ( 
         <>
@@ -89,10 +122,11 @@ function DoctorDetails() {
                             "No time slots are available"}
                         </ul>
                     </div>
-                    <button className="bg-[#5777d7] text-white p-2 mt-8 px-5 rounded-full font-semibold text-[16px] leading-7 border border-solid">Book Appointment</button>
+                    <button className="bg-[#5777d7] text-white p-2 mt-8 px-5 rounded-full font-semibold text-[16px] leading-7 border border-solid" onClick={handleBooking}>Book Appointment</button>
                 </div>
             </div>
         </div>
+        <ToastContainer/>
         </>
     );
 }

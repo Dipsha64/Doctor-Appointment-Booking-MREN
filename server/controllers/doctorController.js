@@ -4,7 +4,6 @@ const bokingModel = require("../model/BookingSchema");
 const getSingleDoctor = async (req,res) =>{
     try{
         const docId = req.params.id;
-        console.log("docId.." ,docId);
         const doctorData = await doctorModel.findById(docId).populate("reviews").select("-password");
         if(doctorData){
             res.json({message:"Doctor is found",status : true,data : doctorData});
