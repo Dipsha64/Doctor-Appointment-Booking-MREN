@@ -45,23 +45,28 @@ function DoctorDetails() {
 
     const handleBooking = () => {
         console.log("Bookingggg" , id ,loginToken);
-        axios.post(getBookingSession+`${id}`,'',{
-            headers : {
-                'Authorization': 'Bearer ' + loginToken
-            }
-        })
-        .then(async(res)=>{
-            console.log("RESSSSSSSSS", res);
-            if(res.data && res.data.status == true){
-                window.location.href = res.data.session.url;              
-                // const { clientSecret } = await res.json();
-                // return clientSecret;  
-            }
-        })
-        .catch((error)=>{
-            console.log(error);
-            toast(error.response.data.message, toastOption);
-        })
+        console.log("DATAAA", profileData);
+        if(profileData.ticketPrice <= 0){
+            toast("You don't have to pay any amount.", toastOption);
+            return;
+        }
+        else{
+            axios.post(getBookingSession+`${id}`,'',{
+                headers : {
+                    'Authorization': 'Bearer ' + loginToken
+                }
+            })
+            .then(async(res)=>{
+                console.log("RESSSSSSSSS", res);
+                if(res.data && res.data.status == true){
+                    window.location.href = res.data.session.url;
+                }
+            })
+            .catch((error)=>{
+                console.log(error);
+                toast(error.response.data.message, toastOption);
+            })
+        }
     }
 
     return ( 

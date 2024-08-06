@@ -46,12 +46,13 @@ const MyAccount = () => {
         })
         .then((res)=>{
             if(res.data && res.data.status === true){
+                console.log("res.data ...." , res.data);
                 setAppointmentData(res.data.data);
             }
         })
         .catch((error)=>{
-            console.log();
-            toast(error.response.data.message, toastOption);
+            console.log(error);
+            // toast(error.response.data.message, toastOption);
         })
     }
 

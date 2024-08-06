@@ -1,5 +1,5 @@
 const express = require("express");
-const router = express.Router();
+const router = express.Router({mergeParams: true});
 const { getSingleUser, getAllUser, updateUser, deleteUser,getUserProfile, getMyAppointments } = require("../controllers/userController");
 const { authenticate, restrict } = require("../auth/verifyToken");
 

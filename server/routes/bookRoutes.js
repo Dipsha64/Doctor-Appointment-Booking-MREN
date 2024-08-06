@@ -1,5 +1,5 @@
 const express = require("express");
-const router = express.Router();
+const router = express.Router({mergeParams: true});
 const { getCheckoutSession } = require("../controllers/bookingController");
 const { authenticate, restrict } =  require("../auth/verifyToken");
 

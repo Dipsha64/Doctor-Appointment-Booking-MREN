@@ -84,14 +84,22 @@ const getMyAppointments = async (req,res) => {
         if(booking.length <= 0){
             res.json({message : "There are no any Appointments is there.", status : false});
         }
-
         // step-2 Extract doctors ids from appointment bookings
-        const doctorId = booking.map(el=>el.doctor.id);
-        console.log("doctorId..." ,doctorId);
+        const doctorId = booking.map(el=>el.doctor._id);
+        // console.log("doctorId..." ,doctorId , doctorId.length);
         // step-3 retrive doctors from docto IDS
-        if(doctorId !== " "){
-            const doctor = doctorModel.find({ _id : {$in : doctorId}}).select("-password");
-            res.json({message : "Appointment are getting.",data : doctor, status : true});
+       
+        if(doctorId.length >= 0){
+            let doctorArr = [];
+            doctorId.map(async(item)=>{
+                console.log("item.." ,item);
+                const doctor = await doctorModel.findById(item).select("-password");
+                console.log("doctordoctordoctordoctor" ,doctor);
+                await doctorArr.push(doctor);
+            })
+            
+            console.log("doctorArr..." ,doctorArr);
+            res.json({message : "Appointment are getting.",data : booking, status : true});
         }
         else{
             res.json({message : "There are something wrong in appointments booking.", status : false});

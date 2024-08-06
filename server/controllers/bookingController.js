@@ -36,12 +36,12 @@ const getCheckoutSession = async (req,res) => {
         })
 
         // Create New Booking
-        // const booking = await bookingSchema.create({
-        //     doctor : doctorData._id,
-        //     user : userData._id,
-        //     ticketPrice : doctorData.ticketPrice,
-        //     session : session.id
-        // })
+        const booking = await bookingSchema.create({
+            doctor : doctorData._id,
+            user : userData._id,
+            ticketPrice : doctorData.ticketPrice,
+            session : session.id
+        })
         res.json({message : "Successfully paid.",session, status : true});
     } catch (error) {
         console.log(error);

@@ -4,7 +4,7 @@ function CheckoutSession() {
     return ( 
         <>
         <div className="h-screen bg-gray-100">
-            <div className="bg-white p-6 md:mx-auto">
+            <div className="bg-white md:mx-auto">
                 <img />
             </div>
             <div className="text-center">
@@ -16,7 +16,7 @@ function CheckoutSession() {
                 </p>
                 <p>  Have a great day!</p>
                 <div className="py-10 text-center">
-                    <Link to="/" className="px-12 text-white py-3 font-semibold"> Go back To Home
+                    <Link to="/" className="px-12 text-white py-3 font-semibold bg-black"> Go back To Home
                     </Link>
                 </div>
             </div>

@@ -31,4 +31,12 @@ const bookingSchema = mongoose.Schema({
     timestamps : true
 });
 
+
+bookingSchema.pre(/^find/,function(next){
+    this.populate("user").populate({
+        path : "doctor",
+        select : "name photo specialization"
+    })
+    next();
+})
 module.exports = mongoose.model("Booking",bookingSchema);

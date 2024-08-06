@@ -34,31 +34,32 @@ function DoctorDashboard() {
         })
         .then((res)=>{
             if(res.data && res.data.status === true){
-                if(res.data.data.doctorData.qualifications.length == 0){
-                    // if(res.data.data.doctorData.qualifications.length === 0){
-                    //     // res.data.data.doctorData.qualifications.push({
-                    //     //     startingDate : '',
-                    //     //     endingDate : '',
-                    //     //     degree : '',
-                    //     //     univercity : ''
-                    //     // }) 
-                    // }
-                    // if(res.data.data.doctorData.experiences.length === 0){
-                    //     // res.data.data.doctorData.experiences.push({
-                    //     //     startingDate : '',
-                    //     //     endingDate : '',
-                    //     //     position : '',
-                    //     //     hospital : ''
-                    //     // }) 
-                    // }
-                    // if(res.data.data.doctorData.timeSlots.length === 0){
-                    //     // res.data.data.doctorData.timeSlots.push({
-                    //     //     startingDate : '',
-                    //     //     endingDate : '',
-                    //     //     day : ''
-                    //     // })
-                    // }
-                }
+                console.log("res.data.data.doctorData...RESSS" , res.data.data.doctorData);
+                // if(res.data.data.doctorData.qualifications.length == 0){
+                //     if(res.data.data.doctorData.qualifications.length === 0){
+                //         // res.data.data.doctorData.qualifications.push({
+                //         //     startingDate : '',
+                //         //     endingDate : '',
+                //         //     degree : '',
+                //         //     univercity : ''
+                //         // }) 
+                //     }
+                //     if(res.data.data.doctorData.experiences.length === 0){
+                //         // res.data.data.doctorData.experiences.push({
+                //         //     startingDate : '',
+                //         //     endingDate : '',
+                //         //     position : '',
+                //         //     hospital : ''
+                //         // }) 
+                //     }
+                //     if(res.data.data.doctorData.timeSlots.length === 0){
+                //         // res.data.data.doctorData.timeSlots.push({
+                //         //     startingDate : '',
+                //         //     endingDate : '',
+                //         //     day : ''
+                //         // })
+                //     }
+                // }
                 setProfileData(res.data.data.doctorData);
             }
         }).catch((error)=>{
