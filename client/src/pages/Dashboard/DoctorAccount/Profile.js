@@ -158,8 +158,10 @@ function Profile({profileData,addNewQualification,inputFieldChange, manageInputF
                         return <div key={index}>
                             <div className="flex gap-12 my-4">
                                 <div>
-                                <p className="font-medium">Day *</p>
-                                    <select name="day" id="day" className="py-3.5 outline-none" value={item.day} onChange={(e)=>inputFieldChange(e,index,"timeSlots")}>
+                                    <p className="font-medium">Date *</p>
+                                    <input type="date" name="appointmentDate" className="pt-1 outline-none" value={item.appointmentDate} onChange={(e)=>inputFieldChange(e,index,"timeSlots")}/>
+                                    
+                                    {/* <select name="day" id="day" className="py-3.5 outline-none" value={item.day} onChange={(e)=>inputFieldChange(e,index,"timeSlots")}>
                                         <option value="monday">Monday</option>
                                         <option value="tuesday">Tuesday</option>
                                         <option value="wednesday">Wednesday</option>
@@ -167,15 +169,15 @@ function Profile({profileData,addNewQualification,inputFieldChange, manageInputF
                                         <option value="friday">Friday</option>
                                         <option value="saturday">Saturday</option>
                                         <option value="sunday">Sunday</option>
-                                    </select>
+                                    </select> */}
                                 </div>
                                 <div>
-                                    <p className="font-medium">Starting Date *</p>
-                                    <input type="time" name="startingDate" className="pt-1 outline-none" value={item.startingDate} onChange={(e)=>inputFieldChange(e,index,"timeSlots")}/>
+                                    <p className="font-medium">Starting Time *</p>
+                                    <input type="time" name="startingTime" className="pt-1 outline-none" value={item.startingTime} onChange={(e)=>inputFieldChange(e,index,"timeSlots")}/>
                                 </div>
                                 <div>
-                                    <p className="font-medium">Ending Date *</p>
-                                    <input type="time" name="endingDate" className="pt-1 outline-none" value={item.endingDate} onChange={(e)=>inputFieldChange(e,index,"timeSlots")}/>
+                                    <p className="font-medium">Ending Time *</p>
+                                    <input type="time" name="endingTime" className="pt-1 outline-none" value={item.endingTime} onChange={(e)=>inputFieldChange(e,index,"timeSlots")}/>
                                 </div>
                                 <MdDelete color="red" onClick={() => removeFieldRow(index,"timeSlots")}/>
                             </div>

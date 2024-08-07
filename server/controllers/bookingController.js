@@ -6,6 +6,7 @@ const bookingSchema = require("../model/BookingSchema");
 const getCheckoutSession = async (req,res) => {
     try {
         // Get Currently Booked Doctor
+        console.log("req.params,,," , req.body);
         const doctorData = await doctorSchema.findById(req.params.id);
         const userData = await userSchema.findById(req.userId);
         console.log("doctorData..." ,doctorData);
@@ -40,7 +41,10 @@ const getCheckoutSession = async (req,res) => {
             doctor : doctorData._id,
             user : userData._id,
             ticketPrice : doctorData.ticketPrice,
-            session : session.id
+            session : session.id,
+            startingTime : req.body.startingTime,
+            endingTime : req.body.endingTime,
+            bookingDate : req.body.bookingDate,
         })
         res.json({message : "Successfully paid.",session, status : true});
     } catch (error) {

@@ -116,9 +116,9 @@ function DoctorDashboard() {
     /******* TimeSlot Method Start *******/
     const handleTimeSlot = () => {
         addItem("timeSlots",{
-            day : '',
-            startingDate : '',
-            endingDate : ''
+            appointmentDate : new Date(),
+            startingTime : '',
+            endingTime : ''
         })
     }
     /******* TimeSlot Method End *******/
