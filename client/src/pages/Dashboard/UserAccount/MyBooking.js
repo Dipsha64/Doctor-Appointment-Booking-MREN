@@ -28,20 +28,11 @@ function MyBooking({appointmentData}) {
                                         <div>
                                         <span className=" flex items-center gap-[6px] text-headingColor text-[14px] leading-5 lg:text-[16px] lg:leading-6 font-semibold">
                                             <img className="w-[20px]" src={starImage} alt=""/> 4.5
-                                            {/* {item.doctor.averageRating} */}
                                         </span>
                                         </div>
                                     </div>
-                                    
                                 </div>
                         })}
-                         
-                        <div>01</div>
-                        <div>01</div>
-                        <div>01</div>
-                        <div>01</div>
-                        <div>01</div>
-                        <div>01</div>
                     </div>
                 </div>
             :
