@@ -46,6 +46,7 @@ const getCheckoutSession = async (req,res) => {
             endingTime : req.body.endingTime,
             bookingDate : req.body.bookingDate,
         })
+        console.log("booking....." ,booking);
         res.json({message : "Successfully paid.",session, status : true});
     } catch (error) {
         console.log(error);

@@ -30,6 +30,7 @@ const MyAccount = () => {
             }
         })
         .then((res)=>{
+            console.log("GET USER PROFILE DATA",res.data.data);
             if(res.data && res.data.status === true){
                 setProfileData(res.data.data);
             }

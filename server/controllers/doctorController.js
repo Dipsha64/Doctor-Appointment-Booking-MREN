@@ -94,4 +94,5 @@ const getDoctorProfile = async (req,res) => {
         console.log(error);
     }
 }
+
 module.exports = { getSingleDoctor,getAllDoctor,updateDoctor,deleteDoctor, getDoctorProfile };

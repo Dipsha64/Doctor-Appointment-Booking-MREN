@@ -18,6 +18,7 @@ function DoctorDashboard() {
     const loginToken = useSelector(authorisedToken);
     const [ tab, setTab ] = useState("overview");
     const [ profileData, setProfileData ] = useState([]);
+    const [ bookingAppointment, setBookingAppointment ] = useState([]);
     const toastOption = {
         position : "top-right",
         autoClose : 8000,
@@ -34,7 +35,7 @@ function DoctorDashboard() {
         })
         .then((res)=>{
             if(res.data && res.data.status === true){
-                console.log("res.data.data.doctorData...RESSS" , res.data.data.doctorData);
+                console.log("DOCTOR PROFILE DATA" , res.data);
                 // if(res.data.data.doctorData.qualifications.length == 0){
                 //     if(res.data.data.doctorData.qualifications.length === 0){
                 //         // res.data.data.doctorData.qualifications.push({
@@ -61,6 +62,7 @@ function DoctorDashboard() {
                 //     }
                 // }
                 setProfileData(res.data.data.doctorData);
+                setBookingAppointment(res.data.data.appointments);
             }
         }).catch((error)=>{
             console.log(error);
@@ -155,7 +157,7 @@ function DoctorDashboard() {
             <div className="grid md:grid-cols-3 gap-10">
                 <Tabs tab={tab} setTab={setTab}/>
                 <div className="lg:col-span-2">
-                    { profileData.isApproved === "pending" &&
+                    { profileData && profileData.isApproved === "pending" &&
                     <div className="flex p-4 mb-4 text-yellow-800 bg-yellow-50 rounded-lg">
                         <MdError/>
                         <span className="sr-only">Info</span>
@@ -165,7 +167,7 @@ function DoctorDashboard() {
                     </div>}
 
                     <div className="mt-8">
-                        { tab === "overview" && 
+                        { tab === "overview" && profileData &&
                             <div>
                                 <div className="flex items-center gap-4 mb-10">
                                     <img className="max-w-[150px] max-h-[150px]" src={profileData.photo} alt=""/>
@@ -188,7 +190,7 @@ function DoctorDashboard() {
                                     <DoctorAbout profileData={profileData}/>
                                 </div>
                             </div>}
-                        { tab === "appointment" && <Appointment profileData={profileData}/>}
+                        { tab === "appointment" && <Appointment bookingAppointment={bookingAppointment}/>}
                         { tab === "profile" && <Profile profileData={profileData} addNewQualification={handleQualification} inputFieldChange={handleinputFieldChange} removeFieldRow={handleRemoveQualification}
                             addNewExperience={handleExperience} addNewTimeSlot={handleTimeSlot} manageInputField={manageInputFieldChange} handleFileUpload={changeProfile} updateProfile={handleUpdateProfile} />}
                     </div>

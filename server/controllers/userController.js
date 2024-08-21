@@ -80,7 +80,6 @@ const getMyAppointments = async (req,res) => {
         console.log("RE BODYY",req.body);
         // Step-1 Retrive appointment from booking for specific user
         const booking = await bookingModel.find({ user : req.body.id});
-        console.log("booking..." ,booking);
         if(booking.length <= 0){
             res.json({message : "There are no any Appointments is there.", status : false});
         }

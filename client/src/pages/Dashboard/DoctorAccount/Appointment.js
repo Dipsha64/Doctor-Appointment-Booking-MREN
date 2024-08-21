@@ -1,4 +1,4 @@
-function Appointment({profileData}) {
+function Appointment({bookingAppointment}) {
     return ( 
         <>
         <table className="w-full text-sm text-grey-500 text-left">
@@ -12,9 +12,9 @@ function Appointment({profileData}) {
                 </tr>
             </thead>
             <tbody>
-                { profileData.appointments && profileData.appointments.length > 0 ? 
-                    profileData.appointments.map((item, index)=>{
-                        <tr>
+                { bookingAppointment && bookingAppointment.length > 0 ? 
+                    bookingAppointment.map((item, index)=>{
+                        return <tr>
                             <th scope="row" className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap ">
                                 <img src={item.user.photo} className="h-10 w-10 rounded-full"/>
                                 <div className="pl-3">
@@ -23,21 +23,21 @@ function Appointment({profileData}) {
                             </th>
                             <td className="px-6 py-4">{item.user.gender}</td>
                             <td className="px-6 py-4">
-                                {item.isPaid && <div className="flex items-center">
+                                {item.isPaid && <div className="flex items-center gap-2.5">
                                         <div className="h-2.5 w-2.5 rounded-md bg-green-500">
-                                            Paid
                                         </div>
+                                        <div>Paid</div>
                                     </div>
                                 }
-                                { !item.isPaid && <div className="flex items-center">
+                                { !item.isPaid && <div className="flex items-center gap-2.5">
                                         <div className="h-2.5 w-2.5 rounded-md bg-red-500">
-                                            Unpaid
                                         </div>
+                                        <div>Unpaid</div>
                                     </div>
                                 }
                             </td>
                             <td className="px-6 py-4">{item.ticketPrice}</td>
-                            <td className="px-6 py-4">-</td>
+                            <td className="px-6 py-4">{item.startingTime} - {item.endingTime}</td>
                         </tr>
                     })
                 : ""}

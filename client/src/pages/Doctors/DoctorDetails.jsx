@@ -52,6 +52,7 @@ function DoctorDetails() {
     },[])
     const handleTime = (e,type) => {
         console.log("EEEE" , e.target.value);
+        console.log("profileData..." ,profileData);
         if(type === "startingTime") setStartingTime(e.target.value);
         if(type === "endingTime") setEndingTime(e.target.value);   
     }
@@ -63,26 +64,26 @@ function DoctorDetails() {
             startingTime : startingTime,
             endingTime : endingTime
         }
-        if(profileData.ticketPrice <= 0){
-            toast("You don't have to pay any amount.", toastOption);
-            return;
-        }
-        else{
-            axios.post(getBookingSession+`${id}`,dataObj,{
-                headers : {
-                    'Authorization': 'Bearer ' + loginToken
-                }
-            })
-            .then(async(res)=>{
-                if(res.data && res.data.status == true){
-                    window.location.href = res.data.session.url;
-                }
-            })
-            .catch((error)=>{
-                console.log(error);
-                toast(error.response.data.message, toastOption);
-            })
-        }
+        // if(profileData.ticketPrice <= 0){
+        //     toast("You don't have to pay any amount.", toastOption);
+        //     return;
+        // }
+        // else{
+        //     axios.post(getBookingSession+`${id}`,dataObj,{
+        //         headers : {
+        //             'Authorization': 'Bearer ' + loginToken
+        //         }
+        //     })
+        //     .then(async(res)=>{
+        //         if(res.data && res.data.status == true){
+        //             window.location.href = res.data.session.url;
+        //         }
+        //     })
+        //     .catch((error)=>{
+        //         console.log(error);
+        //         toast(error.response.data.message, toastOption);
+        //     })
+        // }
     }
 
     return ( 
@@ -126,7 +127,7 @@ function DoctorDetails() {
                             <span className="text-[16px] leading-7 lg:text-[22px] lg:leading-8 text-headingColor font-bold">{profileData.ticketPrice} BDT</span>
                     </div>
                     <div className="mt-[30px]">
-                        <p className="text_para mt-0 font-semibold">Book Available Slots:</p>
+                        <p className="text_para mt-0 font-semibold">Book Available Slots :</p>
                         {/* <ul className="mt-3">
                             { profileData.timeSlots && profileData.timeSlots.length > 0 ? 
                                 profileData.timeSlots.map((time,index)=>{
@@ -142,7 +143,7 @@ function DoctorDetails() {
                             :
                             "No time slots are available"}
                         </ul> */}
-                        <div className="flex justify-center items-center">
+                        <div className="flex justify-center items-center p-2.5">
                             <DatePicker
                                 className="text-center outline-none"
                                 selected={bookingDate}
@@ -154,8 +155,8 @@ function DoctorDetails() {
                             />
                         </div>
                         <div className="flex justify-evenly">
-                            <input type="time" name="startingTime" className="pt-1 outline-none" value={startingTime} onChange={(e) => handleTime(e,"startingTime")}/>
-                            <input type="time" name="endingTime" className="pt-1 outline-none" value={endingTime} onChange={(e) => handleTime(e,"endingTime")}/>
+                            <input type="time" name="startingTime" className="pt-1 border-slate-400 border-2 p-2 rounded-md" value={startingTime} onChange={(e) => handleTime(e,"startingTime")}/>
+                            <input type="time" name="endingTime" className="pt-1 border-slate-400 border-2 p-2 rounded-md" value={endingTime} onChange={(e) => handleTime(e,"endingTime")}/>
                         </div>
                     </div>
                    
